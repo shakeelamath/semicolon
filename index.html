@@ -65,12 +65,70 @@
         url('fonts/inter-v12-latin-700.woff') format('woff');
       /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
     }
-  </style>
+    @keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  body.loading-screen-open {
+    overflow: hidden;
+  }
 
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: #fff;
+    transition: transform 1s ease-in-out;
+  }
+  .loading-text {
+    position: relative;
+    text-align: center;
+  }
+
+  .loading-text span {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+  }
+
+
+  .loading-bar-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Stretch the loading bar to the entire screen width */
+    height: 20px;
+    background-color: #fff;
+  }
+
+  .loaded-content {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .loading-bar {
+    width: 0;
+    height: 100%;
+    background-color: #000;
+    transition: width 1s ease-in-out;
+  }
+  </style>
 
 </head>
 
 <body class="bg-black text-white mt-0" data-bs-spy="scroll" data-bs-target="#navScroll">
+  
 
   <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
     <div class="container">
@@ -82,7 +140,7 @@
           <path
             d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
         </svg>
-        <span class="ms-md-1 mt-1 fw-bolder me-md-5">Klar</span>
+        <span class="ms-md-1 mt-1 fw-bolder me-md-5">SemiColon</span>
       </a>
 
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
@@ -103,10 +161,7 @@
         </li>
 
       </ul>
-      <a href="https://templatedeck.com/klar-html-template.html" aria-label="Download this template"
-        class="btn btn-outline-light">
-        <small>Download Template</small>
-      </a>
+      
     </div>
   </nav>
 
@@ -116,15 +171,14 @@
       <div class="container py-vh-4 position-relative mt-5 px-vw-5 text-center">
         <div class="row d-flex align-items-center justify-content-center py-vh-5">
           <div class="col-12 col-xl-10">
-            <span class="h5 text-secondary fw-lighter">Our Mission</span>
-            <h1 class="display-huge mt-3 mb-3 lh-1">We do ordinary stuff for cool people</h1>
+            <h1 class="display-huge mt-3 mb-3 lh-1">Propel Your Business Forward in the Digital Landscape</h1>
           </div>
-          <div class="col-12 col-xl-8">
-            <p class="lead text-secondary">We are some sort of DAO working with AI, NFT´s, web 4.0 and the so called
-              blockchain...in the Metaverse. You don´t understand a word? No problem, we neither!</p>
+          <div class="col-12 col-xl-10">
+            <p class="lead text-secondary">50+ Projects Completed | 10+ Countries Served | 15+ Happy Clients<br>
+              <i class="flag-icon flag-icon-lk" title="Flag of Country"></i> </p>
           </div>
           <div class="col-12 text-center">
-            <a href="#" class="btn btn-xl btn-light">Join us
+            <a href="#" class="btn btn-xl btn-light">Book a Consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -599,12 +653,81 @@
 
 
 
-
-
-
-
-
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-text">
+      <span id="word1" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Experience</span>
+      <span id="word2" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Communication</span>
+      <span id="word3" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Design</span>
+      <span id="word4" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Semicolon</span>
+    </div>
+    <div class="loading-bar-container">
+      <div id="loadingBar" class="loading-bar"></div>
+    </div>
+  </div>
+  
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      // Check if the loading screen has been shown before
+      var loadingScreenShown = localStorage.getItem('loadingScreenShown');
+  
+      // If the loading screen has not been shown before
+      if (!loadingScreenShown) {
+        var words = document.querySelectorAll('.loading-text span');
+        var loadingBar = document.getElementById('loadingBar');
+        var loadingScreen = document.getElementById('loadingScreen');
+        var content = document.getElementById('content');
+        var maxWidth = 100;
+        var animationDuration = 8500; // Adjust the duration of the loading animation (in milliseconds)
+        var progressStep = 2; // Adjust the step size for increasing the loading bar width
+  
+        function animateWords() {
+          var currentWidth = 0;
+          var wordIndex = 0;
+  
+          // Start loading bar animation
+          var interval = setInterval(function() {
+            currentWidth += progressStep;
+            loadingBar.style.width = currentWidth + '%';
+  
+            // Show next word when appropriate
+            if (currentWidth >= (wordIndex + 1) * (maxWidth / words.length)) {
+              if (wordIndex > 0) {
+                // Hide previous word with easing out
+                words[wordIndex - 1].style.transition = 'opacity 0.3s ease-out';
+                words[wordIndex - 1].style.opacity = 0;
+              }
+              // Show current word with easing in
+              words[wordIndex].style.transition = 'opacity 0.9s ease-in';
+              words[wordIndex].style.opacity = 1;
+              wordIndex++;
+  
+              // Check if all words are shown
+              if (wordIndex === words.length) {
+                clearInterval(interval);
+                setTimeout(function() {
+                  loadingScreen.style.transform = 'translateY(-100%)'; // Slide up the loading screen
+                  setTimeout(function() {
+                    loadingScreen.style.display = 'none'; // Hide loading screen after animation
+                    content.classList.add('loaded'); // Show loaded content
+                  }, 1000); // Adjust delay for hiding loading screen
+                }, 1000); // Adjust delay for sliding up loading screen
+  
+                // Set a flag indicating that the loading screen has been shown
+                localStorage.setItem('loadingScreenShown', true);
+              }
+            }
+          }, animationDuration / maxWidth);
+        }
+  
+        animateWords();
+      } else {
+        // If the loading screen has been shown before, hide it immediately
+        var loadingScreen = document.getElementById('loadingScreen');
+        loadingScreen.style.display = 'none';
+      }
+    });
+  </script>
+   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/aos.js"></script>
   <script>
     AOS.init({
