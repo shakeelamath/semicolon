@@ -144,8 +144,39 @@
   text-align: center;
   margin-bottom: 20px;
   height:250px;
+  display: none;
   
 }
+.text-box1.active {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  height:200px;
+  margin-left: 20px;
+  margin-right:20px ;
+  
+}
+.slider-container {
+  position: relative;
+  height: 50%;
+  width: 80%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slider-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
 
   </style>
 
@@ -229,57 +260,58 @@
     <div class="w-100 position-relative bg-black text-white bg-cover d-flex align-items-center">
       <div class="container-fluid px-vw-5">
         <div class="position-absolute w-100 h-50 bg-dark bottom-0 start-0"></div>
-        <div class="row d-flex align-items-center position-relative justify-content-center px-0 g-5">
-          <div class="col-12 col-lg-6">
-            <img src="img/webp/abstract18.webp" width="2280" height="1732" alt="abstract image"
-              class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up">
-          </div>
-          <div class="col-12 col-md-6 col-lg-3">
-            <img src="img/webp/abstract6.webp" width="1116" height="1578" alt="abstract image"
-              class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up" data-aos-duration="2000">
-          </div>
-          <div class="col-12 col-md-6 col-lg-3">
-            <img src="img/webp/abstract9.webp" width="1116" height="848" alt="abstract image"
-              class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up" data-aos-duration="3000">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg-dark">
-      <div class="container px-vw-5 py-vh-5">
-        <div class="row d-flex align-items-center justify-content-center">
-          
-          <div class="col-lg-4" data-aos="fade-left">
-            <div class="text-box1">
+        <div class="slider-container">
+          <img src="img/webp/abstract18.webp" width="2000" height="1032" alt="abstract image" class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up">
+          <div class="slider-text">
+            <div class="text-box1 active">
               <h3>Communication</h3>
-              <p class="text-secondary">We specialize in strategic communication solutions that connect, engage, and resonate with your audience.
-                <br>
-                
-              </p>
+              <p class="text-secondary">We specialize in strategic communication solutions that connect, engage, and resonate with your audience.</p>
             </div>
-          </div>
-    
-          <div class="col-lg-4" data-aos="fade-left">
             <div class="text-box1">
               <h3>Expression</h3>
-              <p class="text-secondary">Unlock the power of creative expression with our innovative approach to storytelling and visual identity.<br>
-               
-              </p>
+              <p class="text-secondary">Unlock the power of creative expression with our innovative approach to storytelling and visual identity.</p>
             </div>
-          </div>
-    
-          <div class="col-lg-4" data-aos="fade-left">
             <div class="text-box1">
               <h3>Design</h3>
-              <p class="text-secondary">Our design expertise transforms ideas into compelling visuals that captivate and inspire.<br>
-                
-              </p>
+              <p class="text-secondary">Our design expertise transforms ideas into compelling visuals that captivate and inspire.</p>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var currentIndex = 0;
+    var slides = $('.text-box1');
+
+    function showSlide(index) {
+      slides.removeClass('active');
+      slides.eq(index).addClass('active');
+    }
+
+    function nextSlide() {
+      currentIndex++;
+      if (currentIndex >= slides.length) {
+        currentIndex = 0;
+      }
+      showSlide(currentIndex);
+    }
+
+    // Interval for automatic slide change (optional)
+    var interval = setInterval(nextSlide, 5000);
+
+    // Pause on hover (optional)
+    $('.slider-container').hover(function() {
+      clearInterval(interval);
+    }, function() {
+      interval = setInterval(nextSlide, 5000);
+    });
+  });
+</script>
+
+    
+    
     
 
     <div class="bg-black py-vh-3">
@@ -297,22 +329,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="card bg-transparent" data-aos="zoom-in-up">
-              <div class="bg-dark shadow rounded-5 p-0">
-                <img src="img/webp/abstract2.webp" width="582" height="442" alt="abstract image"
-                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
-                <div class="p-5">
-                  <h2 class="fw-lighter">IT Services</h2>
-                  <p class="pb-4 text-secondary">Empower your business with our comprehensive IT solutions, covering network infrastructure, cybersecurity, software development, and IT support to enhance efficiency and security.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="p-5 pt-0 mt-5" data-aos="fade">
-              <h2 class="display-4">Integrated Solutions for Growth</h2>
-            </div>
             <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
               <div class="bg-dark shadow rounded-5 p-0">
                 <img src="img/webp/abstract17.webp" width="582" height="390" alt="abstract image"
@@ -321,6 +337,23 @@
                   <h2 class="fw-lighter">Business Development</h2>
                   <p class="pb-4 text-secondary">Accelerate your business growth through strategic planning, market analysis, lead generation, and partnership development tailored to expand your market reach and increase revenue.
                   </p>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="p-5 pt-0 mt-5" data-aos="fade">
+              <h2 class="display-4">Integrated Solutions for Growth</h2>
+            </div>
+            <div class="card bg-transparent" data-aos="zoom-in-up">
+              <div class="bg-dark shadow rounded-5 p-0">
+                <img src="img/webp/abstract2.webp" width="582" height="442" alt="abstract image"
+                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+                <div class="p-5">
+                  <h2 class="fw-lighter">IT Services</h2>
+                  <p class="pb-4 text-secondary">Empower your business with our comprehensive IT solutions, covering network infrastructure, cybersecurity, software development, and IT support to enhance efficiency and security.</p>
                 </div>
               </div>
             </div>
