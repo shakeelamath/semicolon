@@ -13,7 +13,7 @@
   <meta name="author" content="Holger Koenemann">
   <meta name="generator" content="Eleventy v2.0.0">
   <meta name="HandheldFriendly" content="true">
-  <title>Klar HTML Template - Frontpage one</title>
+  <title>Semicolon Intergrated</title>
   <link rel="stylesheet" href="css/theme.min.css">
 
   <style>
@@ -131,6 +131,10 @@
   margin-top: 0;
   color: white;
 }
+.text-box img{
+  height:60px;
+  width: auto;
+}
 .flags{
   height: 30px;
   width: auto;
@@ -143,41 +147,64 @@
   border-radius: 10px;
   text-align: center;
   margin-bottom: 20px;
-  height:250px;
+  margin-left: auto; /* Adjusted to center */
+    margin-right: auto; /* Adjusted to center */
+  height:350px;
   display: none;
   
 }
 .text-box1.active {
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   text-align: center;
-  margin-bottom: 20px;
   height:200px;
-  margin-left: 20px;
-  margin-right:20px ;
+  margin-left: auto; /* Adjusted to center */
+    margin-right: auto; /* Adjusted to center */
+    width: 100%; /* Adjust as needed */
+
   
 }
+
 .slider-container {
   position: relative;
-  height: 50%;
-  width: 80%;
+  height: 70%;
+  width: 90%;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  overflow: hidden; /* Add this to hide overflowing content */
+
 }
 
 .slider-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  text-align: center;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Adjust as needed */
+    text-align: center;
+  }
+  .slider-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
 
+  .dot {
+    height: 7px;
+    width: 7px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
 
+  .dot.active {
+    background-color: #fff;
+  }
   </style>
 
 </head>
@@ -195,7 +222,7 @@
           <path
             d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
         </svg>
-        <span class="ms-md-1 mt-1 fw-bolder me-md-5">SemiColon</span>
+        <span class="ms-md-1 mt-1 fw-bolder me-md-5">Semicolon</span>
       </a>
 
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
@@ -209,11 +236,7 @@
             About
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link fs-5" href="system.html" aria-label="A system message page">
-            System
-          </a>
-        </li>
+
 
       </ul>
       
@@ -244,7 +267,7 @@
               
           </div>
           <div class="col-12 text-center">
-            <a href="#" class="btn btn-xl btn-light">Book a Consultation
+            <a href="#form" class="btn btn-xl btn-light">Book a Consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-right" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -257,58 +280,79 @@
 
     </div>
 
-    <div class="w-100 position-relative bg-black text-white bg-cover d-flex align-items-center">
-      <div class="container-fluid px-vw-5">
-        <div class="position-absolute w-100 h-50 bg-dark bottom-0 start-0"></div>
-        <div class="slider-container">
-          <img src="img/webp/abstract18.webp" width="2000" height="1032" alt="abstract image" class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up">
-          <div class="slider-text">
-            <div class="text-box1 active">
-              <h3>Communication</h3>
-              <p class="text-secondary">We specialize in strategic communication solutions that connect, engage, and resonate with your audience.</p>
-            </div>
-            <div class="text-box1">
-              <h3>Expression</h3>
-              <p class="text-secondary">Unlock the power of creative expression with our innovative approach to storytelling and visual identity.</p>
-            </div>
-            <div class="text-box1">
-              <h3>Design</h3>
-              <p class="text-secondary">Our design expertise transforms ideas into compelling visuals that captivate and inspire.</p>
-            </div>
+    <div class="slider-container">
+      <img src="img/webp/abstract18.webp" width="2000" height="1032" alt="abstract image" class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up">
+      <div class="slider-text">
+        <div class="text-box1 active">
+          <h3>Communication</h3>
+          <p class="text-secondary">We specialize in strategic communication solutions that connect, engage, and resonate with your audience.</p>
+          <div class="slider-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="text-box1">
+          <h3>Expression</h3>
+          <p class="text-secondary">Unlock the power of creative expression with our innovative approach to storytelling and visual identity.</p>
+          <div class="slider-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+        <div class="text-box1">
+          <h3>Design</h3>
+          <p class="text-secondary">Our design expertise transforms ideas into compelling visuals that captivate and inspire.</p>
+          <div class="slider-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
       </div>
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    var currentIndex = 0;
-    var slides = $('.text-box1');
-
-    function showSlide(index) {
-      slides.removeClass('active');
-      slides.eq(index).addClass('active');
-    }
-
-    function nextSlide() {
-      currentIndex++;
-      if (currentIndex >= slides.length) {
-        currentIndex = 0;
-      }
-      showSlide(currentIndex);
-    }
-
-    // Interval for automatic slide change (optional)
-    var interval = setInterval(nextSlide, 5000);
-
-    // Pause on hover (optional)
-    $('.slider-container').hover(function() {
-      clearInterval(interval);
-    }, function() {
-      interval = setInterval(nextSlide, 5000);
-    });
-  });
-</script>
+    <script>
+      $(document).ready(function() {
+        var currentIndex = 0;
+        var slides = $('.text-box1');
+        var dots = $('.dot');
+    
+        function showSlide(index) {
+          slides.removeClass('active');
+          dots.removeClass('active');
+          slides.eq(index).addClass('active');
+          dots.eq(index).addClass('active');
+        }
+    
+        function nextSlide() {
+          currentIndex++;
+          if (currentIndex >= slides.length) {
+            currentIndex = 0;
+          }
+          showSlide(currentIndex);
+        }
+    
+        // Interval for automatic slide change (optional)
+        var interval = setInterval(nextSlide, 5000);
+    
+        // Pause on hover (optional)
+        $('.slider-container').hover(function() {
+          clearInterval(interval);
+        }, function() {
+          interval = setInterval(nextSlide, 5000);
+        });
+    
+        // Click event for dots
+        $('.dot').click(function() {
+          var index = $(this).index();
+          showSlide(index);
+          currentIndex = index;
+        });
+      });
+    </script>
 
     
     
@@ -320,12 +364,31 @@
         <div class="row gx-5">
           <div class="col-12 col-md-6">
             <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
+              <div class="p-5 pt-0 mt-5" data-aos="fade">
+                <h2 class="display-4">Integrated Solutions for Growth</h2>
+              </div>
               <div class="bg-dark shadow rounded-5 p-0">
                 <img src="img/webp/abstract3.webp" width="582" height="327" alt="abstract image"
                   class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
                 <div class="p-5">
                   <h2 class="fw-lighter">Digital Marketing</h2>
                   <p class="pb-4 text-secondary">Transform your online presence and drive growth with our tailored digital marketing strategies, including SEO, PPC, social media marketing, and content creation.</p>
+                </div>
+              </div>
+            </div>
+         
+
+            
+          </div>
+          <div class="col-12 col-md-6">
+            
+            <div class="card bg-transparent" data-aos="zoom-in-up">
+              <div class="bg-dark shadow rounded-5 p-0">
+                <img src="img/webp/abstract2.webp" width="582" height="442" alt="abstract image"
+                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+                <div class="p-5">
+                  <h2 class="fw-lighter">IT Services</h2>
+                  <p class="pb-4 text-secondary">Empower your business with our comprehensive IT solutions, covering network infrastructure, cybersecurity, software development, and IT support to enhance efficiency and security.</p>
                 </div>
               </div>
             </div>
@@ -343,263 +406,116 @@
 
             
           </div>
-          <div class="col-12 col-md-6">
-            <div class="p-5 pt-0 mt-5" data-aos="fade">
-              <h2 class="display-4">Integrated Solutions for Growth</h2>
-            </div>
-            <div class="card bg-transparent" data-aos="zoom-in-up">
-              <div class="bg-dark shadow rounded-5 p-0">
-                <img src="img/webp/abstract2.webp" width="582" height="442" alt="abstract image"
-                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
-                <div class="p-5">
-                  <h2 class="fw-lighter">IT Services</h2>
-                  <p class="pb-4 text-secondary">Empower your business with our comprehensive IT solutions, covering network infrastructure, cybersecurity, software development, and IT support to enhance efficiency and security.</p>
-                </div>
-              </div>
-            </div>
-
-            
-          </div>
         </div>
 
       </div>
 
     </div>
     
-    <div class="bg-dark py-vh-5">
-      <div class="container px-vw-5">
-        <div class="row d-flex gx-5 align-items-center">
-          <div class="col-12 col-lg-6">
-            <div class="rounded-5 bg-black p-5 shadow" data-aos="zoom-in-right">
-              <div class="fs-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-              </div>
-              <p class="text-secondary lead">"Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore et
-                dolore magna aliqua ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-              <div class="d-flex justify-content-start align-items-center border-top border-secondary pt-3">
-                <img src="img/webp/person14.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person"
-                  data-aos="fade" loading="lazy">
-                <div>
-                  <span class="h6 fw-5">Jane Doemunsky</span><br>
-                  <small class="text-secondary">COO, The Boo Corp.</small>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-5 bg-black p-5 shadow mt-5" data-aos="zoom-in-right">
-              <div class="fs-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-half" viewBox="0 0 16 16">
-                  <path
-                    d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z" />
-                </svg>
-
-              </div>
-              <p class="text-secondary lead">"Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam. quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat."</p>
-              <div class="d-flex justify-content-start align-items-center border-top border-secondary pt-3">
-                <img src="img/webp/person13.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person"
-                  data-aos="fade" loading="lazy">
-                <div>
-                  <span class="h6 fw-5">Jane Doemunsky</span><br>
-                  <small class="text-secondary">COO, The Boo Corp.</small>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-12 col-lg-6">
-            <div class="p-5 pt-0" data-aos="fade">
-              <h2 class="display-4">Get to Know the Faces Behind Semicolon Integrated</h2>
-            </div>
-            <div class="rounded-5 bg-black p-5 shadow mt-5 gradient" data-aos="zoom-in-left">
-              <div class="fs-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                  class="bi bi-star-fill" viewBox="0 0 16 16">
-                  <path
-                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-                </svg>
-
-
-              </div>
-              <p class="lead">"Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat."</p>
-              <div class="d-flex justify-content-start align-items-center border-top pt-3">
-                <img src="img/webp/person16.webp" width="96" height="96" class="rounded-circle me-3" alt="a nice person"
-                  data-aos="fade" loading="lazy">
-                <div>
-                  <span class="h6 fw-5">Jane Doemunsky</span><br>
-                  <small>COO, The Boo Corp.</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
 
      
 
    
-    <div class="bg-black">
+    <div class="bg-dark">
       <div class="container px-vw-5 py-vh-5">
 
         <div class="col-12 col-xl-12 text-center">
-          <p class="lead text-secondary">Semicolon Integrated in Our Clients Words<br>
+          <p class="lead text-secondary"> Our Clients<br>
             
         </div>
         <div class="row d-flex align-items-center justify-content-center">
           
           <div class="col-lg-3" data-aos="fade-left">
             <div class="text-box">
-              <p class="text-secondary">Finmark
-                <br>
-                
-              </p>
+              <img src="/img/logos/finmark.jpg" alt="Finmark Logo" class="logo-img">
             </div>
           </div>
-    
+          
           <div class="col-lg-3" data-aos="fade-left">
             <div class="text-box">
-              <p class="text-secondary">RO-PA Construction<br>
-               
-              </p>
+              <img src="/img/logos/ropa.jpg" alt="RO-PA Construction Logo" class="logo-img">
             </div>
           </div>
-    
+          
           <div class="col-lg-3" data-aos="fade-left">
             <div class="text-box">
-              <p class="text-secondary">Kings Gate<br>
-                
-              </p>
+              <img src="/img/logos/kingsgate.jpg" alt="Kings Gate Logo" class="logo-img">
+            </div>
+          </div>
+          
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/dynasty.jpg" alt="Dynasty Logo" class="logo-img">
             </div>
           </div>
           <div class="col-lg-3" data-aos="fade-left">
             <div class="text-box">
-              <p class="text-secondary">Dynasty<br>
-                
-              </p>
+              <img src="/img/logos/advantic.jpg" alt="Dynasty Logo" class="logo-img">
             </div>
           </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/cambridge.jpg" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/ceylon.jpg" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/gqc.jpg" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/juwello.jpg" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/loupe.jpg" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          <div class="col-lg-3" data-aos="fade-left">
+            <div class="text-box">
+              <img src="/img/logos/wheelmaster.png" alt="Dynasty Logo" class="logo-img">
+            </div>
+          </div>
+          
           
         </div>
       </div>
     </div>
-    <div class="bg-dark">
+    <div class="bg-black">
       <div class="container px-vw-5 py-vh-5">
         <div class="col-12 col-xl-12 text-center">
           <p class="lead text-secondary">Ready to take your business to the next level? Get in touch with us today.<br>
             
         </div>
-    <form class="row">
-      <div class="col-12">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Address</label>
-          <input type="text" class="form-control form-control-lg bg-gray-800 border-dark" id="exampleInputEmail1" aria-describedby="emailHelp">
-        </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input type="email" class="form-control form-control-lg bg-gray-800 border-dark" id="exampleInputEmail1" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Phone</label>
-        <input type="tel" class="form-control form-control-lg bg-gray-800 border-dark" id="exampleInputPassword1">
-      </div>
+        <form class="row" id="form" method="post" action="">
+          <div class="col-12">
+              <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control form-control-lg bg-gray-800 border-dark" id="name" name="name" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control form-control-lg bg-gray-800 border-dark" id="email" name="email" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                  <label for="phone" class="form-label">Phone</label>
+                  <input type="tel" class="form-control form-control-lg bg-gray-800 border-dark" id="phone" name="phone" required>
+              </div>
+              <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control form-control-lg bg-gray-800 border-dark" id="message" name="message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-white btn-xl mb-4">Submit</button>
+          </div>
+      </form>
       
-      <button type="submit" class="btn btn-white btn-xl mb-4">Submit</button>
-    </div>
-    </form>
     </div>
   </div>
     
@@ -609,17 +525,13 @@
   <footer class="bg-black border-top border-dark">
     <div class="container py-vh-4 text-secondary fw-lighter">
       <div class="row">
-        <div class="col-12 col-lg-5 py-4 text-center text-lg-start">
-          <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="index.html">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stack"
-              viewBox="0 0 16 16">
-              <path
-                d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.598.598 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.598.598 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.598.598 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535L7.733.063z" />
-              <path
-                d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.598.598 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.659z" />
-            </svg>
-            <span class="ms-md-1 mt-1 fw-bolder me-md-5">Semicolon</span>
-          </a>
+        <div class="col-12 col-lg-8 py-4 text-center text-lg-start">
+         
+          <span class="ms-md-1 mt-1 fw-bolder me-md-5">Number: +94755537499 || 0728262049 </span><br>
+          <span class="ms-md-1 mt-1 fw-bolder me-md-5">Email: hello@semicolonintegrated.com</span><br>
+
+          <span class="ms-md-1 mt-1 fw-bolder me-md-5">Address: 128/4, Poorwarama Road, Kirulapone, Colombo 5</span>
+
 
         </div>
        
