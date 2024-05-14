@@ -188,6 +188,7 @@ main#carousel {
 img.item {
   position: absolute;
   max-width: 100%; /* Set maximum width */
+  border-radius: 20px;
   height: auto; /* Maintain aspect ratio */
   max-height: 500px; /* Set maximum height */
   --r: calc(var(--position) - var(--offset));
@@ -345,8 +346,7 @@ input:nth-of-type(5):checked ~ main#carousel {
   <nav id="navScroll" class="navbar navbar-dark bg-black fixed-top px-vw-5" tabindex="0">
     <div class="container">
         <a class="navbar-brand pe-md-4 fs-4 col-12 col-md-auto text-center" href="index.html">
-            <img src="./img/semicolon.png" alt="Logo" class="me-md-2" style="height: 30px;"> <!-- Adjust the src attribute to the path of your logo -->
-            <span class="ms-md-1 mt-1 fw-bolder me-md-5">Semicolon</span>
+            <img src="./img/semicolonlogo.png" alt="Logo" class="me-md-2" style="height: 40px; width: 90px;"> 
         </a>
 
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0 list-group list-group-horizontal">
@@ -356,8 +356,13 @@ input:nth-of-type(5):checked ~ main#carousel {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link fs-5" href="content.html" aria-label="A sample content page">
-            About
+          <a class="nav-link fs-5" href="content.html" aria-label="About Semicolon">
+            Services
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="system.html" aria-label="Contact Semicolon">
+            Contact Us
           </a>
         </li>
 
@@ -404,30 +409,47 @@ input:nth-of-type(5):checked ~ main#carousel {
 
     </div>
     <main id="carousel">
+      <img class="item" src="./img/expression.jpg" alt="Image 3">
       <img class="item" src="./img/communication.jpg" alt="Image 1">
       <img class="item" src="./img/design.jpg" alt="Image 2">
-      <img class="item" src="./img/expression.jpg" alt="Image 3">
     
-      <div class="radio-buttons">
-        <input type="radio" name="position" />
-        <input type="radio" name="position" checked/>
-        <input type="radio" name="position" />
-      </div>
+     
     </main>
     
     <script>
       const carousel = document.getElementById('carousel');
       const radios = document.querySelectorAll('.radio-buttons input');
     
-      // Set the default position to 2 (for Image 2)
-      carousel.style.setProperty('--position', 2);
+      let position = 2; // Set the default position to 2 (for Image 2)
+      carousel.style.setProperty('--position', position);
     
-      radios.forEach((radio, index) => {
+      // Function to move to the next image
+      const moveToNextImage = () => {
+        position = (position % 3) + 1; // Loop through images 1, 2, 3
+        carousel.style.setProperty('--position', position);
+      };
+    
+      // Move to the next image every 4 seconds
+      const intervalId = setInterval(moveToNextImage, 4000);
+    
+      // Stop the interval when a radio button is clicked
+      radios.forEach((radio) => {
         radio.addEventListener('click', () => {
-          carousel.style.setProperty('--position', index + 1);
+          clearInterval(intervalId);
         });
       });
+    
+      // Stop the interval when the mouse is over the carousel
+      carousel.addEventListener('mouseover', () => {
+        clearInterval(intervalId);
+      });
+    
+      // Resume the interval when the mouse leaves the carousel
+      carousel.addEventListener('mouseleave', () => {
+        intervalId = setInterval(moveToNextImage, 4000);
+      });
     </script>
+    
     
   
   
@@ -635,7 +657,7 @@ input:nth-of-type(5):checked ~ main#carousel {
 
   <div id="loadingScreen" class="loading-screen">
     <div class="loading-text">
-      <span id="word1" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Experience</span>
+      <span id="word1" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Expression</span>
       <span id="word2" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Communication</span>
       <span id="word3" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Design</span>
       <span id="word4" class="ms-md-1 mt-1 fw-bolder me-md-5" style="font-size: 30px;">Semicolon</span>
