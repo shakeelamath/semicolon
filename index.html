@@ -167,15 +167,127 @@
   
 }
 
-.slider-container {
-  position: relative;
-  height: 70%;
-  width: 90%;
+main#carousel {
+  position: relative; /* Set position to relative */
+  grid-row: 1 / 2;
+  grid-column: 1 / 8;
+  width: 100vw;
+  height: 600px;
+  display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden; /* Add this to hide overflowing content */
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  --items: 5;
+  --middle: 3;
+  --position: 1;
+  pointer-events: none;
+}
 
+img.item {
+  position: absolute;
+  max-width: 100%; /* Set maximum width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 500px; /* Set maximum height */
+  --r: calc(var(--position) - var(--offset));
+  --abs: max(calc(var(--r) * -1), var(--r));
+  transition: all 0.25s linear;
+  transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px * var(--r)));
+  z-index: calc((var(--position) - var(--abs)));
+}
+
+
+img.item:nth-of-type(1) {
+  --offset: 1;
+}
+img.item:nth-of-type(2) {
+  --offset: 2;
+}
+img.item:nth-of-type(3) {
+  --offset: 3;
+}
+img.item:nth-of-type(4) {
+  --offset: 4;
+}
+img.item:nth-of-type(5) {
+  --offset: 5;
+}
+
+.radio-buttons {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  display: flex;
+  justify-content: center;
+  width: auto; /* Remove width to allow flexible positioning */
+}
+
+.radio-buttons input {
+  margin: 0 5px; /* Adjust spacing between radio buttons */
+  pointer-events: auto; /* Enable pointer events */
+}
+
+input:nth-of-type(1) {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+input:nth-of-type(1):checked ~ main#carousel {
+  --position: 1;
+}
+
+input:nth-of-type(2) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+input:nth-of-type(2):checked ~ main#carousel {
+  --position: 2;
+}
+
+input:nth-of-type(3) {
+  grid-column: 4 /5;
+  grid-row: 2 / 3;
+}
+input:nth-of-type(3):checked ~ main#carousel {
+  --position: 3;
+}
+
+input:nth-of-type(4) {
+  grid-column: 5 / 6;
+  grid-row: 2 / 3;
+}
+input:nth-of-type(4):checked ~ main#carousel {
+  --position: 4;
+}
+
+input:nth-of-type(5) {
+  grid-column: 6 / 7;
+  grid-row: 2 / 3;
+}
+input:nth-of-type(5):checked ~ main#carousel {
+  --position: 5;
+}
+
+
+
+.slider-dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #333;
 }
 
 .slider-text {
@@ -205,6 +317,24 @@
   .dot.active {
     background-color: #fff;
   }
+  .card-video {
+    overflow: hidden; /* Hide any content that overflows the card */
+  }
+
+  .video-container {
+    position: relative; /* Ensure proper positioning for the video */
+    width: 100%; /* Ensure the video fills the container */
+    padding-top: 56.25%; /* 16:9 aspect ratio (height:width) */
+  }
+
+  .video-fluid {
+    position: absolute; /* Position the video absolutely within its container */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensure the video fills its container */
+    height: 100%; /* Ensure the video fills its container */
+  }
+
   </style>
 
 </head>
@@ -273,80 +403,34 @@
       </div>
 
     </div>
-
-    <div class="slider-container">
-      <img src="img/webp/abstract18.webp" width="2000" height="1032" alt="abstract image" class="img-fluid position-relative rounded-5 shadow" data-aos="fade-up">
-      <div class="slider-text">
-        <div class="text-box1 active">
-          <h3>Communication</h3>
-          <p class="text-secondary">We specialize in strategic communication solutions that connect, engage, and resonate with your audience.</p>
-          <div class="slider-dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-        <div class="text-box1">
-          <h3>Expression</h3>
-          <p class="text-secondary">Unlock the power of creative expression with our innovative approach to storytelling and visual identity.</p>
-          <div class="slider-dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-        <div class="text-box1">
-          <h3>Design</h3>
-          <p class="text-secondary">Our design expertise transforms ideas into compelling visuals that captivate and inspire.</p>
-          <div class="slider-dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
+    <main id="carousel">
+      <img class="item" src="./img/communication.jpg" alt="Image 1">
+      <img class="item" src="./img/design.jpg" alt="Image 2">
+      <img class="item" src="./img/expression.jpg" alt="Image 3">
+    
+      <div class="radio-buttons">
+        <input type="radio" name="position" />
+        <input type="radio" name="position" checked/>
+        <input type="radio" name="position" />
       </div>
-    </div>
+    </main>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-      $(document).ready(function() {
-        var currentIndex = 0;
-        var slides = $('.text-box1');
-        var dots = $('.dot');
+      const carousel = document.getElementById('carousel');
+      const radios = document.querySelectorAll('.radio-buttons input');
     
-        function showSlide(index) {
-          slides.removeClass('active');
-          dots.removeClass('active');
-          slides.eq(index).addClass('active');
-          dots.eq(index).addClass('active');
-        }
+      // Set the default position to 2 (for Image 2)
+      carousel.style.setProperty('--position', 2);
     
-        function nextSlide() {
-          currentIndex++;
-          if (currentIndex >= slides.length) {
-            currentIndex = 0;
-          }
-          showSlide(currentIndex);
-        }
-    
-        // Interval for automatic slide change (optional)
-        var interval = setInterval(nextSlide, 5000);
-    
-        // Pause on hover (optional)
-        $('.slider-container').hover(function() {
-          clearInterval(interval);
-        }, function() {
-          interval = setInterval(nextSlide, 5000);
-        });
-    
-        // Click event for dots
-        $('.dot').click(function() {
-          var index = $(this).index();
-          showSlide(index);
-          currentIndex = index;
+      radios.forEach((radio, index) => {
+        radio.addEventListener('click', () => {
+          carousel.style.setProperty('--position', index + 1);
         });
       });
     </script>
+    
+  
+  
 
     
     
@@ -357,13 +441,18 @@
 
         <div class="row gx-5">
           <div class="col-12 col-md-6">
-            <div class="card bg-transparent mb-5" data-aos="zoom-in-up">
-              <div class="p-5 pt-0 mt-5" data-aos="fade">
-                <h2 class="display-4">Integrated Solutions for Growth</h2>
-              </div>
+            <div class="p-5 pt-0 mt-5" data-aos="fade">
+              <h2 class="display-4">Integrated Solutions for Growth</h2>
+            </div>
+            <div class="card bg-transparent mb-5 mt-5 card-video" data-aos="zoom-in-up">
               <div class="bg-dark shadow rounded-5 p-0">
-                <img src="img/webp/abstract3.webp" width="582" height="327" alt="abstract image"
-                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+                <div class="video-container">
+                  <video class="video-fluid rounded-5 no-bottom-radius" autoplay loop muted playsinline>
+                    <source src="./img/vids/marketing.mp4" type="video/mp4">
+                    <!-- You can add additional source elements for different video formats if needed -->
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 <div class="p-5">
                   <h2 class="fw-lighter">Digital Marketing</h2>
                   <p class="pb-4 text-secondary">Transform your online presence and drive growth with our tailored digital marketing strategies, including SEO, PPC, social media marketing, and content creation.</p>
@@ -376,24 +465,33 @@
           </div>
           <div class="col-12 col-md-6">
             
-            <div class="card bg-transparent" data-aos="zoom-in-up">
+            <div class="card bg-transparent mb-5 mt-5 card-video" data-aos="zoom-in-up">
               <div class="bg-dark shadow rounded-5 p-0">
-                <img src="img/webp/abstract2.webp" width="582" height="442" alt="abstract image"
-                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+                <div class="video-container">
+                  <video class="video-fluid rounded-5 no-bottom-radius" autoplay loop muted playsinline>
+                    <source src="./img/vids/tech.mp4" type="video/mp4">
+                    <!-- You can add additional source elements for different video formats if needed -->
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 <div class="p-5">
                   <h2 class="fw-lighter">IT Services</h2>
                   <p class="pb-4 text-secondary">Empower your business with our comprehensive IT solutions, covering network infrastructure, cybersecurity, software development, and IT support to enhance efficiency and security.</p>
                 </div>
               </div>
             </div>
-            <div class="card bg-transparent mb-5 mt-5" data-aos="zoom-in-up">
+            <div class="card bg-transparent mb-5 mt-5 card-video" data-aos="zoom-in-up">
               <div class="bg-dark shadow rounded-5 p-0">
-                <img src="img/webp/abstract17.webp" width="582" height="390" alt="abstract image"
-                  class="img-fluid rounded-5 no-bottom-radius" loading="lazy">
+                <div class="video-container">
+                  <video class="video-fluid rounded-5 no-bottom-radius" autoplay loop muted playsinline>
+                    <source src="./img/vids/business.mp4" type="video/mp4">
+                    <!-- You can add additional source elements for different video formats if needed -->
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 <div class="p-5">
                   <h2 class="fw-lighter">Business Development</h2>
-                  <p class="pb-4 text-secondary">Accelerate your business growth through strategic planning, market analysis, lead generation, and partnership development tailored to expand your market reach and increase revenue.
-                  </p>
+                  <p class="pb-4 text-secondary">Accelerate your business growth through strategic planning, market analysis, lead generation, and partnership development tailored to expand your market reach and increase revenue.</p>
                 </div>
               </div>
             </div>
@@ -529,9 +627,8 @@
 
         </div>
        
-    <div class="container text-center small py-vh-2 border-top border-dark">Made by
-       <a href=# class="link-fancy link-fancy-light" target="_blank">Semicolon</a>
-    </div>
+        <div class="container text-center small py-vh-2 border-top border-dark">All rights reserved &copy; Semicolon</div>
+
   </footer>
 
 
@@ -617,6 +714,11 @@
       duration: 800, // values from 0 to 3000, with step 50ms
     });
   </script>
+  
+
+
+
+
   <script>
     let scrollpos = window.scrollY;
     const header = document.querySelector(".navbar");
