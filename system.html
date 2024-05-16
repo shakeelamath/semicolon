@@ -177,7 +177,7 @@
           
           <div class="col-lg-4" data-aos="fade-left">
             <div class="text-box">
-              <p style="font-size: 15px;">+94755537499<br>0728262049</p>
+              <p style="font-size: 15px;">(+94) 755537499<br>(+94) 728262049</p>
             </div>
           </div>
           
@@ -194,7 +194,7 @@
           <p class="lead text-secondary">Ready to take your business to the next level? Get in touch with us today.<br>
             
         </div>
-        <form class="row" id="form" method="post" action="">
+        <form class="row" id="form" method="post" action="https://script.google.com/macros/s/AKfycbwvBpUZpzmP4ng7dVhDQnwN8c-BeC_my3CfNFXnWub9BfHzyjVPkDD3OPmLH29pwZty/exec">
           <div class="col-12">
               <div class="mb-3">
                   <label for="name" class="form-label">Name</label>
@@ -212,9 +212,42 @@
                   <label for="message" class="form-label">Message</label>
                   <textarea class="form-control form-control-lg bg-gray-800 border-dark" id="message" name="message" rows="5" required></textarea>
               </div>
-              <button type="submit" class="btn btn-white btn-xl mb-4">Submit</button>
+              <button type="submit" onclick="submitForm(event)" class="btn btn-white btn-xl mb-4">Submit</button>
           </div>
       </form>
+      <script>
+        function submitForm(event) {
+            event.preventDefault(); // Prevent the form from submitting immediately
+    
+            // Perform any necessary form validation here before submitting
+            // For example, you can check if required fields are filled, etc.
+    
+            // Display a success message
+            alert("Form submitted successfully.");
+    
+            // Reset the form
+            var form = document.getElementById("form");
+            form.reset();
+    
+            // Submit the form asynchronously
+            var formData = new FormData(form);
+    
+            fetch(form.action, {
+                redirect: "follow",
+                method: form.method,
+                body: formData,
+            })
+            .then(response => {
+                // Handle the response here if needed
+                console.log(response);
+            })
+            .catch(error => {
+                // Handle any errors here
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    
       
     </div>
   
